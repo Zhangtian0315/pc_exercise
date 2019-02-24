@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <div id="wrap">
+      <!--头部-->
+      <header id="header">
+        <div class="headerMain">
+            <h1 class="logo">
+                <a href="javascript:;">
+                    <img src="img/logo.png" alt="">
+                </a>
+            </h1>
+            <div class="nav">
+                <ul class="navList">
+                    <li class="navItem">
+                        <a href="javascript:;">
+                            <div class="up"><img src="img/home_gruen.png" alt=""></div>
+                            <div class="down"><img src="img/home.png" alt=""></div>
+                        </a>
+                    </li>
+                    <li class="navItem">
+                        <a href="javascript:;">
+                            <div class="up">Course</div>
+                            <div class="down">Course</div>
+                        </a>
+                    </li>
+                    <li class="navItem">
+                        <a href="javascript:;">
+                            <div class="up">Works</div>
+                            <div class="down">Works</div>
+                        </a>
+                    </li>
+                    <li class="navItem">
+                        <a href="javascript:;">
+                            <div class="up">About</div>
+                            <div class="down">About</div>
+                        </a>
+                    </li>
+                    <li class="navItem">
+                        <a href="javascript:;">
+                            <div class="up">Team</div>
+                            <div class="down">Team</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="arrow"></div>
+        </div>
+      </header>
+      <!--主体-->
+      <section id="content">
+          <ul class="contentList">
+              <!--第一屏-->
+              <li class="contentItem">
+                 <div class="contentInner">
+                     home
+                 </div>
+              </li>
+              <!--第二屏-->
+              <li class="contentItem">
+                  <div class="contentInner">
+                      course
+                  </div>
+              </li>
+              <!--第三屏-->
+              <li class="contentItem">
+                  <div class="contentInner">
+                      works
+                  </div>
+              </li>
+              <!--第四屏-->
+              <li class="contentItem">
+                  <div class="contentInner">
+                      about
+                  </div>
+              </li>
+              <!--第五屏-->
+              <li class="contentItem">
+                  <div class="contentInner">
+                      team
+                  </div>
+              </li>
+          </ul>
+      </section>
+
+  </div>
+</body>
+<script>
+window.onload=function () {
+    var arrow=document.querySelector("#header .headerMain .arrow");
+    var navUps = document.querySelectorAll('#header .headerMain .navList .up');
+    var navItems = document.querySelectorAll('#header .headerMain .navList li');
+    var content=document.getElementById("content");
+    var contentItems=document.querySelectorAll("#content .contentList .contentItem");
+    var header=document.getElementById("header");
+    navUps[0].style.width="100%";
+    arrow.style.left=navItems[0].getBoundingClientRect().left+navItems[0].offsetWidth/2+"px";
+    headBind();
+    function headBind() {
+        for(var i=0;i<navItems.length;i++){
+            var item= navItems[i];
+            item.index=i;
+            item.onclick=function () {
+                //其他的失去高亮
+                for(var j=0;j<navUps.length;j++){
+                    navUps[j].style.width="";
+                }
+                navUps[this.index].style.width="100%";
+                arrow.style.left=navItems[this.index].getBoundingClientRect().left+navItems[this.index].offsetWidth/2+"px";
+            };
+
+        };
+    }
+    content.style.height=document.documentElement.clientHeight-header.offsetHeight+"px";
+    for(var i=0;i<contentItems.length;i++){
+        contentItems[i].style.height=document.documentElement.clientHeight-header.offsetHeight+"px";
+    }
+
+};
+</script>
+</html>
